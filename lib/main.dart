@@ -12,6 +12,9 @@ void main() async {
   var dir = await getApplicationDocumentsDirectory();
   Hive.init(dir.path);
   authBox = await Hive.openBox("auth");
+  // Hive.registerAdapter(MovieProvider());
+  await Hive.openBox('favoritesBox');
+  await Hive.openBox('watchlistBox');
   runApp(ProviderScope(child: const MyApp()));
 }
 

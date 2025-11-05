@@ -7,6 +7,7 @@ import '../provider/movie_provider.dart';
 import '../provider/theme_provider.dart';
 import '../utils/global_auth.dart';
 import '../utils/theme_utils.dart';
+import 'movie_list_screen.dart';
 
 class SplashScreen extends ConsumerStatefulWidget {
   const SplashScreen({super.key});
@@ -18,19 +19,10 @@ class SplashScreen extends ConsumerStatefulWidget {
 class _SplashScreenState extends ConsumerState<SplashScreen> {
 @override
   void initState() {
-  WidgetsBinding.instance.addPostFrameCallback((_){
-    var provider = ref.read(movieProvider);
-      provider.getAuth();
-    var data = authBox!.get('auth');
-    // authData = data;
-    // if(data != null){
-    //   Future.delayed(Duration(seconds: 3)).then((value){
-        print("=============== $data");
-    //   });
-    // }
-  });
-
-
+Future.delayed(Duration(seconds: 2)).then((_){
+  if(!mounted) return;
+  Navigator.pushReplacement(context, MaterialPageRoute(builder: (_) => MovieListScreen()));
+});
     super.initState();
   }
 
